@@ -12,7 +12,7 @@ router.post('/incoming-sms', async (req, res) => {
         await handleIncomingSMS(smsData);
         res.status(200).send("OK");
     } catch (err) {
-        console.error("❌ Error reenviando el SMS a Matrix:", err.message);
+        console.error("❌ Error resending SMS to UI:", err.message);
         res.status(500).send("Internal Server Error");
     }
 });
@@ -24,7 +24,7 @@ router.post('/outgoing-sms', async (req, res) => {
         await handleOutgoingSMS(smsData);
         res.status(200).send("OK");
     } catch (err) {
-        console.error("❌ Error reenviando el SMS a Matrix:", err.message);
+        console.error("❌ Error resending SMS to user:", err.message);
         res.status(500).send("Internal Server Error");
     }
 });

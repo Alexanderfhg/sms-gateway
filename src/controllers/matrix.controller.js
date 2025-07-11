@@ -1,8 +1,8 @@
-import { sendMessageToMatrix, sendSMSToUser } from '../services/matrix.service.js';
+import { sendSMSToUi, sendSMSToUser } from '../services/matrix.service.js';
 
 export const handleIncomingSMS = async (smsData) => {
     try {
-        await sendMessageToMatrix(smsData);
+        await sendSMSToUi(smsData);
     } catch (error) {
         console.error("❌ Error al manejar el SMS entrante:", error.message);
     }
