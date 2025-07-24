@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { handleIncomingSMS, handleOutgoingSMS } from "../controllers/matrix.controller.js";
+import { createDeviceWebhook } from "../controllers/webhook.controller.js";
 
 const router = Router();
 
@@ -28,5 +29,7 @@ router.post('/outgoing-sms', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+router.post("/create-webhook", createDeviceWebhook);
 
 export default router;
