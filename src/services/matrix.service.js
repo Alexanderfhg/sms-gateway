@@ -14,7 +14,7 @@ export const sendSMSToUi = async (smsData) => {
 export const sendSMSToUser = async (smsData) => {
     try {
         await axios.post(
-            `http://${smsData.phone.localAddress}:8080/messages`,
+            `http://${smsData.phone.deviceIp}:8080/messages`,
             {
                 phoneNumbers: [`+${smsData.to}`],
                 message: smsData.message
