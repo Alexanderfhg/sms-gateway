@@ -8,10 +8,13 @@ export const handleIncomingSMS = async (smsData) => {
     }
 }
 
-export const handleOutgoingSMS = async (smsData) => {
-    try {
-        await sendSMSToUser(smsData);
-    } catch (error) {
-        console.error("❌ Error enviando SMS:", error.response?.data || error.message);
-    }
-}
+export const handleOutgoingSMS = async (req, res) => {
+    const smsData = req.body;
+
+    const response = await sendSMSToUser(smsData);
+
+    res.status(response.status).send({
+        statusText: response.statusText,
+        data: response.data
+    });
+};

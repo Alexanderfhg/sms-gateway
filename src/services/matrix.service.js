@@ -13,7 +13,7 @@ export const sendSMSToUi = async (smsData) => {
 
 export const sendSMSToUser = async (smsData) => {
     try {
-        await axios.post(
+        const response = await axios.post(
             `http://${smsData.phone.deviceIp}:8080/messages`,
             {
                 phoneNumbers: [`+${smsData.to}`],
@@ -26,7 +26,14 @@ export const sendSMSToUser = async (smsData) => {
                 }
             }
         );
+        return response;
     } catch (error) {
         console.error("❌ Error sending SMS to user:", error.response?.data || error.message);
+        return {
+            address: error?.address || 'Unknown',
+            cause: error?.cause || "Unknown",
+            code: error?.code || 'Unknown',
+            message: error?.message || 'Unknown'
+        };
     }
 }

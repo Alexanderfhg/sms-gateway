@@ -20,10 +20,7 @@ router.post('/incoming-sms', async (req, res) => {
 
 router.post('/outgoing-sms', async (req, res) => {
     try {
-        const smsData = req.body;
-
-        await handleOutgoingSMS(smsData);
-        res.status(200).send("OK");
+        await handleOutgoingSMS(req, res);
     } catch (err) {
         console.error("❌ Error resending SMS to user:", err.message);
         res.status(500).send("Internal Server Error");
